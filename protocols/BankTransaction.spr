@@ -1,0 +1,13 @@
+global protocol BankTransactions(role Teller as T, role Accounts[1..N])
+{
+	par[i:1..n-1] { BankTransaction(T, A[i], A[i+1]); }
+}
+
+global protocol BankTransaction(
+	role Teller as T, role SrcAcc as S, 
+	role DestAcc as D)
+{   
+	  credit from T to S;
+    debit from S to D;
+    reply from D to S;
+    reply from S to T; }

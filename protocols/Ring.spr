@@ -1,0 +1,7 @@
+global protocol Ring(role Worker[1..N])	
+	rec Loop {
+		data(int) from Worker[i:1..N-1] to Worker[i+1];
+		data(int) from Worker[N] to Worker[1];
+		continue Loop;
+	}
+}

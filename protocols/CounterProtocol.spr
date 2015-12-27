@@ -1,0 +1,7 @@
+global protocol Counter 
+	(role Producer as P, role Counter as C)   	
+	rec Loop {  
+		choice at P{ val(int) from P to C;	}
+		or { retrieve_message() from P to C;}  	
+	res(int) from C to P;
+}}

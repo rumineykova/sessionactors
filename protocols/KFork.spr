@@ -1,0 +1,5 @@
+global protocol KFork(
+	role master as M, role Worker[1..K]){
+	 par[i:1..K] {
+				data(int) from M to Worker[i];
+				end() from M to Worker[i];}}

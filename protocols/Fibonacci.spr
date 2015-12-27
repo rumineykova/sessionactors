@@ -1,0 +1,7 @@
+global protocol Fib(role Parent as P, 
+	role Child as C) {
+	req(int) from P to C;
+	par { Fib(C as Parent, new Child); }
+	and { Fib(C as Parent, new Child); }
+	res(int) from C to P;
+} } }

@@ -1,0 +1,24 @@
+global protocol SleepingBarber(role Barber as B, role Selector as S, role Customer[1..N], 
+	                                                                           role Room as R)
+{ par[i:1..n] { SleepingBarberOneCustomer(B, S, C[i], R); } }
+
+global protocol SleepingBarber(
+	role Barber as B, role Selector as S, 
+	role Customer as C, role Room as R)
+{
+	rec L {
+	   // enter customers concurrently
+		enter() from S to R; 
+		choice at R {
+			full() from R to C;
+			returned() from C to S;
+			continue L;
+		} or {
+			 next() from R to C;
+			 ready() from C to S; 
+		}}
+		 start() from B to C;
+		 done() from C to S;
+		 exit() from S to R;
+		 done() from S to R;
+		}

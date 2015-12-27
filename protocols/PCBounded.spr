@@ -1,0 +1,16 @@
+global protocol PCBounded(
+	role Buffer as B, 
+	role Producer as P, role Consumer as C)
+{rec Loop {
+	produce() from B to P;
+	par {
+		choice at P {
+			dm() from P to B;
+			continue Loop;
+		} or {
+			exit() from P to B;
+		}
+	} and {
+		dm() from B to C;
+		more() from C to B;
+	}}}
