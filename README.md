@@ -1,0 +1,2 @@
+Session Actor is an actor framework in Python with support for session types. An actor can implement multiple session types (roles) in a similar way as an object can implement multiple interfaces. The framework supports automatic discovery of roles and runtime checks for protocol compliance. This project is a fork of the cell project(https://github.com/celery/cell), which is an actor framework in Python.  
+
